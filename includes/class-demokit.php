@@ -35,8 +35,7 @@ if ( ! class_exists( 'DemoKit' ) ) {
 			add_action( 'wp_head',				array( $this, 'head_meta' ),			0 );
 
 			// Disable Admin Bar for all Users (except admins)
-			if( ! current_user_can( 'manage_options' ) )
-				add_filter( 'show_admin_bar', '__return_false' );
+			add_filter( 'show_admin_bar', '__return_false' );
 			
 			// Remove Admin Bar CSS (padding, margin)
 			add_action( 'get_header',			array( $this, 'wp_admin_bar' ),			10 );
@@ -108,8 +107,8 @@ if ( ! class_exists( 'DemoKit' ) ) {
 			
 			// Add support for custom logo
 			add_theme_support( 'custom-logo', array(
-				'width'       => 160,
-				'height'      => 120,
+				'width'       => 100,
+				'height'      => 100,
 				'flex-height' => true,
 				'flex-width'  => true,
 				'header-text' => array( 'site-title', 'site-description' ),
@@ -129,10 +128,12 @@ if ( ! class_exists( 'DemoKit' ) ) {
 			/**
 			 * Styles
 			 */
-			wp_enqueue_style( 'css-reset',			THEME_TEMPLATE_URL . '/assets/css/reset.css',								false,					THEME_VERSION,	'all' );
 			wp_enqueue_style( 'google-fonts',		'//fonts.googleapis.com/css?family=Lato:300,400|Open+Sans:300,400',			false,					false,			'all' );
-			//wp_enqueue_style( 'normalize',			'//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css',		false,					'5.0.0',		'all' );
-			//wp_enqueue_style( 'spinkit',			'//cdnjs.cloudflare.com/ajax/libs/spinkit/1.2.5/spinkit.min.css',			false,					'1.2.5',		'all' );
+			
+			wp_enqueue_style( 'normalize',			'//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css',		false,					'5.0.0',		'all' );
+			wp_enqueue_style( 'ionicons',			'//cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css',		false,					'2.0.1',		'all' );
+			wp_enqueue_style( 'spinkit',			'//cdnjs.cloudflare.com/ajax/libs/spinkit/1.2.5/spinkit.min.css',			false,					'1.2.5',		'all' );
+			wp_enqueue_style( 'slick',				'//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css',		false,					'1.6.0',		'all' );
 
 			// Enqueue Theme Stylesheet 
 			wp_enqueue_style( THEME_SLUG,			THEME_TEMPLATE_URL . '/style.css',											false,					THEME_VERSION,	'all' );
@@ -142,6 +143,8 @@ if ( ! class_exists( 'DemoKit' ) ) {
 			 */
 
 			wp_enqueue_script( 'jquery' );
+			
+            wp_enqueue_script( 'slick',				'//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js',		array( 'jquery' ),		'1.6.0',		true );
 			
 			// Enqueue Theme Javascripts 
             wp_enqueue_script( THEME_SLUG,			THEME_TEMPLATE_URL . '/assets/js/init.js',									array( 'jquery' ),		THEME_VERSION,	true );

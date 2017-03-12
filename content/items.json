@@ -1,0 +1,96 @@
+{  
+    "app"			: "DemoKit",
+    "name"			: "WPCasa Demo",
+    "items"			: [
+		{
+			"name"		: "WPCasa Madrid",
+			"id"		: "wpcasa-madrid",
+			"type"		: "premium",
+			"details"	: "//wpcasa.com/downloads/wpcasa-madrid/",
+			"demo"		: "//demo.wpcasa.com/madrid",
+			"test"		: "//try.wpcasa.com/madrid/try-demo",
+			"preview"	: "//try.wpcasa.com/wp-content/uploads/2017/03/screenshot-madrid.png",
+			"group"		: "Featured"
+		},
+		{
+			"name"		: "WPCasa Oslo",
+			"id"		: "wpcasa-oslo",
+			"type"		: "premium",
+			"details"	: "//wpcasa.com/downloads/wpcasa-oslo/",
+			"demo"		: "//demo.wpcasa.com/oslo",
+			"test"		: "//try.wpcasa.com/oslo/try-demo",
+			"preview"	: "",
+			"group"		: "Featured"
+		},
+		{
+			"name"		: "WPCasa London",
+			"id"		: "wpcasa-london",
+			"type"		: "premium",
+			"details"	: "//wpcasa.com/downloads/wpcasa-london/",
+			"demo"		: "//demo.wpcasa.com/london",
+			"test"		: "//try.wpcasa.com/london/try-demo",
+			"preview"	: "//try.wpcasa.com/wp-content/uploads/2017/03/screenshot-london.png",
+			"group"		: "Featured"
+		},
+		{
+			"name"		: "WPCasa Sylt",
+			"id"		: "wpcasa-sylt",
+			"type"		: "premium",
+			"details"	: "//wpcasa.com/downloads/wpcasa-sylt/",
+			"demo"		: "//demo.wpcasa.com/sylt",
+			"test"		: "",
+			"preview"	: "",
+			"group"		: ""
+		},
+		{
+			"name"		: "WPCasa Bahia",
+			"id"		: "wpcasa-bahia",
+			"type"		: "premium",
+			"details"	: "//wpcasa.com/downloads/wpcasa-bahia/",
+			"demo"		: "//demo.wpcasa.com/bahia",
+			"test"		: "//try.wpcasa.com/bahia/try-demo",
+			"preview"	: "",
+			"group"		: ""
+		},
+		{
+			"name"		: "WPCasa Elviria",
+			"id"		: "wpcasa-elviria",
+			"type"		: "premium",
+			"details"	: "//wpcasa.com/downloads/wpcasa-elviria/",
+			"demo"		: "//demo.wpcasa.com/elviria",
+			"test"		: "",
+			"preview"	: "",
+			"group"		: ""
+		},
+		{
+			"name"		: "UpTown",
+			"id"		: "uptown",
+			"type"		: "free",
+			"details"	: "//wpcasa.com/downloads/uptown/",
+			"demo"		: "//demo.wpcasa.com/uptown",
+			"test"		: "",
+			"preview"	: "",
+			"group"		: ""
+		},
+		{
+			"name"		: "WPCasa Stage",
+			"id"		: "wpcasa-stage",
+			"type"		: "premium",
+			"details"	: "//wpcasa.com/downloads/wpcasa-stage/",
+			"demo"		: "//demo.wpcasa.com/stage",
+			"test"		: "",
+			"preview"	: "",
+			"group"		: ""
+		},
+		{
+			"name"		: "WPCasa Twentyfifteen",
+			"id"		: "wpcasa-twentyfifteen",
+			"type"		: "free",
+			"details"	: "//wpcasa.com/downloads/wpcasa-twentyfifteen/",
+			"demo"		: "//demo.wpcasa.com/twentyfifteen",
+			"test"		: "",
+			"preview"	: "//demo.wpcasa.com/twentyfifteen/wp-content/themes/twentyfifteen-wpcasa/screenshot.png",
+			"group"		: ""
+		}
+	]
+}

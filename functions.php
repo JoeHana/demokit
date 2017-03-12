@@ -35,7 +35,7 @@ function demokit_constants() {
 		define( 'THEME_SLUG', 'demokit' );
 
 	if ( ! defined( 'THEME_VERSION' ) )
-		define( 'THEME_VERSION', '1.0.0' );
+		define( 'THEME_VERSION', '1.1.0' );
 	
 	if ( ! defined( 'THEME_TEMPLATE_DIR' ) )
 		define( 'THEME_TEMPLATE_DIR', get_template_directory() );
@@ -51,63 +51,19 @@ function demokit_constants() {
 
 }
 
-function demokit_products() {
+
+function demokit_get_json() {
+
+	// read config file and create config object
+	$config = @file_get_contents( get_template_directory_uri() . '/content/items.json' );
+	$configObject = $config ? json_decode( $config ) : null;
 	
-	$products = array (
+    return $configObject;
 	
-		array (
-			"name" 		=> "WPCasa Madrid",
-			"id" 		=> "wpcasa-madrid",
-			"demo-url" 	=> "http://demo.wpcasa.com/madrid",
-			"item-url" 	=> "https://wpcasa.com/downloads/wpcasa-madrid/"
-		),
-		
-		array (
-			"name" 		=> "WPCasa Oslo",
-			"id" 		=> "wpcasa-oslo",
-			"demo-url" 	=> "http://demo.wpcasa.com/oslo",
-			"item-url" 	=> "https://wpcasa.com/downloads/wpcasa-oslo/"
-		),
-		
-		array (
-			"name" 		=> "WPCasa London",
-			"id" 		=> "wpcasa-london",
-			"demo-url" 	=> "http://demo.wpcasa.com/london",
-			"item-url" 	=> "https://wpcasa.com/downloads/wpcasa-london/"
-		),
-		
-		array (
-			"name" 		=> "WPCasa Sylt",
-			"id" 		=> "wpcasa-sylt",
-			"demo-url" 	=> "http://demo.wpcasa.com/sylt",
-			"item-url" 	=> "https://wpcasa.com/downloads/wpcasa-sylt/"
-		),
-		
-		array (
-			"name" 		=> "WPCasa Bahia",
-			"id" 		=> "wpcasa-bahia",
-			"demo-url" 	=> "http://demo.wpcasa.com/bahia",
-			"item-url" 	=> "https://wpcasa.com/downloads/wpcasa-bahia/"
-		),
-		
-		array (
-			"name" 		=> "WPCasa Elviria",
-			"id" 		=> "wpcasa-elviria",
-			"demo-url" 	=> "http://demo.wpcasa.com/elviria",
-			"item-url" 	=> "https://wpcasa.com/downloads/wpcasa-elviria/"
-		),
-		
-		array (
-			"name" 		=> "WPCasa Stage",
-			"id" 		=> "wpcasa-stage",
-			"demo-url" 	=> "http://demo.wpcasa.com/stage",
-			"item-url" 	=> "https://wpcasa.com/downloads/wpcasa-stage/"
-		)
-		
-	);
-	
-	return $products;
-	
+}
+
+function demokit_get_items() {
+	return demokit_get_json()->items;	
 }
 
 /**

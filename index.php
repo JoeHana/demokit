@@ -2,62 +2,69 @@
 
 <?php
 
-// get current theme name
-$current_theme 	= isset($_GET['theme']) ? $_GET['theme'] : null;
-$theme_found 	= false;
+// get current item name
+$item_current 	= isset($_GET['item']) ? $_GET['item'] : null;
+$item_found 	= false;
 
-$theme_array = demokit_products();
+// get items
+$items = demokit_get_items();
 
-// get current theme data
-foreach ($theme_array as $i => $theme) {
-
-	if ($theme['id'] == $current_theme) {
-	
-		$current_theme_name 		= $theme['name'];
-		$current_theme_id 			= $theme['id'];
-		$current_theme_styles		= $theme['styles'];
-		$current_theme_url 			= $theme['demo-url'];
-		$current_theme_purchase_url = $theme['item-url'];
+// get current item data
+foreach ($items as $item) {
 		
-		$theme_found = true;
+	if ( $item->id == $item_current ) {
+	
+		$item_current_name 			= $item->name;
+		$item_current_id 			= $item->id;
+		$item_current_type 			= $item->type;
+		$item_current_url 			= $item->demo;
+		$item_current_purchase_url	= $item->details;
+		
+		$item_found = true;
 	
 	}
 
 }
 
-if ($theme_found == false) {
-
-	$current_theme_name 		= $theme_array[0]['name'];
-	$current_theme_id	 		= $theme_array[0]['id'];
-	$current_theme_styles 		= $theme_array[0]['styles'];
-	$current_theme_url 			= $theme_array[0]['demo-url'];
-	$current_theme_purchase_url = $theme_array[0]['item-url'];	
+if ( $item_found == false ) {
+	
+	$item_current_name			= $items[0]->name;
+	$item_current_id	 		= $items[0]->id;
+	$item_current_type	 		= $items[0]->type;
+	$item_current_url 			= $items[0]->demo;
+	$item_current_purchase_url	= $items[0]->details;	
 
 }
 
+if( current_theme_supports( 'custom-logo' ) ) {
+
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+	
+	if( $custom_logo_id ) {
+		$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+		$image = $image[0];
+	} else {
+		$image = '';
+	}
+	
+}
 
 ?>
 
-<div id="overlay"></div>
+<div class="loader">
 
-<div id="showbox-toolbar"><div class="wrapper">
-    <ul class="panels">
-        <li id="logo" class="panel"><div class="inner">
+	<?php if( $image ) { ?>
+        <div class="loading-image-wrap"><img src="<?php echo $image ?>" alt="" width="100" height="100" /></div>
+    <?php } ?>
+
+</div>
+
+<div class="toolbar">
+    
+    <div class="panels">
+    
+        <div class="panel panel-logo">
         
-			<?php
-            if( current_theme_supports( 'custom-logo' ) ) {
-                
-                $custom_logo_id = get_theme_mod( 'custom_logo' );
-                
-                if( $custom_logo_id ) {
-                    $image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-                    $image = $image[0];
-                } else {
-                    $image = '';
-                }
-                
-            }
-            ?>        
             <a href="<?php echo home_url() ?>" title="">
                 
                 <?php if( $image ) { ?>
@@ -66,29 +73,78 @@ if ($theme_found == false) {
             
             </a>        
 
-        </div></li>
-        <li id="theme-selector" class="panel"><div class="inner">
-            <a id="theme-select" href="#<?php echo $current_theme_name; ?>" title="<?php echo $current_theme_id; ?>"><?php echo $current_theme_name; ?></a>
-            <ul>
-                <?php foreach ($theme_array as $i => $theme) { ?>
-                    <li><a href="#<?php echo $theme['name']; ?>" rel="<?php echo $theme['demo-url']; ?>,<?php echo $theme['item-url']; ?>,<?php echo $theme['id']; ?>" title="<?php echo $theme['name']; ?>"><?php echo $theme['name']; ?></a></li>
-                <?php } ?>
-            </ul>
-        </div></li>
-        <li id="purchase" class="panel purchase"><div class="inner">
-            <a href="<?php echo $current_theme_purchase_url; ?>" class="button medium" title="<?php _e( 'Get it Now', 'demokit' ); ?>" target="_blank"><?php _e( 'Get it Now', 'demokit' ); ?></a>
-            <?php /*?><a href="<?php echo $current_theme_url; ?>" class="button small">&#215;</a><?php */?>
-        </div></li>				
-        <?php /*?><li id="remove_frame" class="remove_frame" rel="<?php echo $current_theme_url; ?>"></li><?php */?>
-    </ul>
-</div></div>
-
-
-
-<!-- Showbox Frame >> Start -->
-<div id="showbox-frame" class="">
-    <iframe src="<?php echo $current_theme_url; ?>"></iframe>
+        </div>
+        
+        <div class="panel panel-items">
+        
+            <a href="#" class="item-select"><span><?php echo $item_current_name; ?></span> <i class="ion-arrow-down-b"></i></a>
+                          
+        </div>
+        
+        <div class="panel panel-purchase">
+			<?php
+            if( $item_current_type == 'premium' ) {
+				echo '<a href="' . $item_current_purchase_url . '" title="' . __( 'See Purchase Options', 'demokit' ) . '" target="_blank" class="button medium" ><i class="ion-ios-cart"></i><span>' . __( 'See Purchase Options', 'demokit' ) . '</span></a>';
+			} else {
+				echo '<a href="' . $item_current_purchase_url . '" title="' . __( 'Download for Free', 'demokit' ) . '" target="_blank" class="button medium" ><i class="ion-android-download"></i><span>' . __( 'Download for Free', 'demokit' ) . '</span></a>';
+			}
+			?>
+            
+        </div>
+        
+    </div>
+    
 </div>
-<!-- Showbox Frame >> End -->
+
+<div class="item-overview is--invisible">
+
+	<div class="item-slider-nav">
+    	<ul>
+        	<li><a href="#prev" class="slide-nav slide-prev"><i class="ion-arrow-left-b"></i></a></li>
+            <li><a href="#next" class="slide-nav slide-next"><i class="ion-arrow-right-b"></i></a></li>
+        </ul>
+    </div>
+
+    <div class="item-slider">
+            
+		<?php foreach ( $items as $item ) { ?>
+            
+            <div class="item">
+                <div class="overlay">
+                    <div class="title">
+                    	<h3><?php echo $item->name; ?></h3>
+                    </div>
+                    <div class="actions">
+                        <a href="#<?php echo $item->id; ?>" rel="<?php echo $item->type; ?>,<?php echo $item->demo; ?>,<?php echo $item->details; ?>,<?php echo $item->id; ?>" title="<?php echo $item->name; ?>" class="view-item">
+                            <?php _e( 'View', 'demokit' ); ?>
+                        </a>
+                        <?php if( $item->test ) { ?>
+                            <a href="<?php echo $item->test; ?>" title="<?php _e( 'Try', 'demokit' ); ?> <?php echo $item->name; ?>" target="_blank">
+                                <?php _e( 'Try', 'demokit' ); ?>
+                            </a>
+                        <?php } ?>
+                    </div>
+                    
+                </div>
+                <?php
+                
+                if( ! $item->preview )
+                    $item->preview = $item->demo-url . '/wp-content/themes/' . $item->id . '/screenshot.png';
+                
+                ?>
+                <img src="<?php echo $item->preview; ?>" width="200" />
+            </div>
+            
+        <?php } ?>
+            
+    </div>
+                                    
+</div>
+
+
+
+<div id="frame" class="frame">
+    <iframe src="<?php echo $item_current_url; ?>"></iframe>
+</div>
 
 <?php get_footer(); ?>
