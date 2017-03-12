@@ -1,0 +1,200 @@
+/*
+ * Theme Name:			DemoKit
+ * Theme URI:			-
+ *
+ * Description:			Custom Theme for WPCasa Demo
+ * Tags:				-
+ *
+ * Version:				1.1.0
+ * 
+ * Author:           	WPCasa
+ * Author URI:       	http: //wpcasa.com/
+ *
+ */
+ 
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+  font-size: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    font-family: 'Lato', Helvetica, sans-serif;
+}
+
+html, body {
+	overflow: hidden; 
+	background: #111;
+}
+
+body, a, p {font-family: 'Open Sans', 'Lato', Arial; font-weight: 300;}
+
+a {text-decoration: none;}
+
+#overlay {width: 100%; height: 100%; position: absolute; top: 0; bottom: 0; left: 0; right: 0; background: #111; background: rgba(0,0,0,0.75); display: none;}
+
+#blender {width: 100%; height: 100%; position: absolute; top: 0; bottom: 0; left: 0; right: 0; background: #111; background: rgba(0,0,0,0.75);}
+
+#blender div {
+	width: 20%; 
+	height: 20%; 
+	position: absolute; 
+	top: 40%; 
+	bottom: 40%; 
+	left: 40%; 
+	right: 40%; 
+	background: rgba(0,0,0,0.9) url(../images/ajax-loader.gif) no-repeat center;
+	
+	-o-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	
+	-o-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	-webkitbox-shadow: 0 0 10px rgba(0,0,0,0.5);
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* ==================== 1. BASIC LAYOUT >> TOOLBAR ==================== */
+#showbox-toolbar {
+	width: 100%; 
+	height: 50px;
+	
+	position: fixed; 
+	bottom: 0; 
+	z-index: 10000000000; 
+	
+	background: #222; 
+	
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	   -moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+#showbox-toolbar .wrapper {width: auto; height: 50px; margin: auto; position: relative;}
+
+/* ==================== 1. BASIC LAYOUT >> FRAME ==================== */
+#showbox-frame iframe {width: 100%; background: #000;}
+
+/* ==================== 2. PANELS >> GENERAL ==================== */
+.panels {width: 100%; height: 50px; float: left;}
+.panels .panel {height: 50px; float: left;}
+.panels .panel .inner {height: 50px; float: left;}
+
+.panels .panel:first-child, .panels .panel:first-child .inner {border: none;}
+
+.panels #purchase {float: right;}
+/* ==================== 2. PANELS >> LOGO ==================== */
+
+/* logo styles comes here */
+
+/* ==================== 2. PANELS >> THEME SELECTOR ==================== */
+
+#theme-selector .inner {
+	position: relative;
+	background: #222; 
+}
+
+#theme-selector #theme-select {
+    width: 200px;
+	height: 50px;
+	display: block;
+	padding: 0 2em;
+	color: #999; 
+	line-height: 50px;
+	background: url(assets/img/arrow.png) no-repeat 90% bottom;
+}
+
+#theme-selector ul {
+	width: auto;
+	display: none;
+	position: absolute;
+	bottom: 50px;
+	overflow: hidden;
+	
+	background: #222; 
+
+	-o-box-shadow: 0 0 20px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 0 20px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 0 20px rgba(0,0,0,0.5);
+	box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+#theme-selector ul li {}
+
+#theme-selector ul li a {
+	display: block;
+	padding: 15px 2em;
+	min-width: 200px;
+	color: #999; 
+    -webkit-transition: all .2s;
+       -moz-transition: all .2s;
+            transition: all .2s;
+}
+
+#theme-selector ul li a:hover {background: #444;}
+
+
+/* Button */
+#showbox-toolbar .button {
+	display: block; 
+	float: left;
+    
+	padding: 15px 3em 15px; 
+	
+    position: relative;
+
+	color: #FFF;
+     
+	font-family: 'Open Sans'; 
+    font-weight: 300;
+	line-height: 20px; 
+	text-decoration: none; 
+	text-transform: uppercase;
+	text-align: center;
+    
+    	
+	background: #13AE90;
+    
+	-webkit-transition: all .2s linear;
+	   -moz-transition: all .2s linear;
+            transition: all .2s linear;
+}
+
+#showbox-toolbar .button:hover {background-position: center;}
+#showbox-toolbar .button:active {background-position: bottom;}
+
+#showbox-toolbar .button.small {padding: 7px 5px;}
+#showbox-toolbar .button.medium {}
+
+#wpadminbar {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    
+    #wpadminbar {
+        display: block;
+        opacity: 0;
+        
+        -webkit-transition: all .2s linear;
+           -moz-transition: all .2s linear;
+            -ms-transition: all .2s linear;
+             -o-transition: all .2s linear;
+                transition: all .2s linear;
+    }
+    
+    #wpadminbar:hover {
+        opacity: 1;
+    }
+    
+}
